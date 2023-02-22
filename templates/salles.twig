@@ -1,0 +1,85 @@
+{% extends 'aside.twig' %}
+
+{% block aside %}
+<ul>
+{# Liens dans le aside #}
+		{% for element in salles %}
+			<li>
+				<a href="#{{ element.id }} ">
+				{# Si new == True (pour les nouvelles salles) #}
+					{% if element.new %}
+					{# Alors on lui ajoute une image 'new' #}
+						<img class="new" src="../images/Pictogrammes/new.png"></img>
+					{% endif %}
+				{{element.titre}}
+			</li>
+		</a>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}
+{% block article %}
+{% for element in salles %}
+<article id="{{ element.id }}">
+	<ul>
+		<li>
+			<h2>
+			{# Ajout de la pastille new #}
+				{% if element.new %}
+					<img class="new_article" src="../images/Pictogrammes/new.png"></img>
+				{% endif %}
+				{{ element.titre }}
+			</h2>
+			<h3>
+			{# Traduction des articles #}
+				<a href ="{{langue.translate}}{{page}}.php#{{element.id}}" class="translate" >{{langue.traduire}}</a>
+			</h3>
+		</li>
+		<li>
+			<figure>
+				<img src=" {{ element.img_titre }} " alt=" {{ element.figcaption }} ">
+				<figcaption>
+					{{element.figcaption}}
+				</figcaption>
+			</figure>
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<p>
+				{{ element.paragraphe1 }}
+			</p>
+		</li>
+		<li>
+			<div class="container_img">
+			{# Images d'illustration #}
+				<img src=" {{ element.img1 }} " alt=" {{ element.img1_alt }} ">
+				<img src=" {{ element.img2 }} " alt=" {{ element.img2_alt }} ">
+				<img src=" {{ element.img3 }} " alt=" {{ element.img3_alt }} ">
+			</div>
+		</li>
+		<li>
+			<p>
+				{{ element.paragraphe2 }}
+			</p>
+			<h3>
+				{{ element.titre_liste }}
+			</h3>
+			<ul class="liste">
+				{% for element in element.liste %}
+					<li>
+						<b>
+							{{ element.element_liste }}
+						</b>
+						<i>
+							{{ element.nom_liste }}
+						</i>
+						{{ element.poste_liste }}
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+	</ul>
+</article>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'aside.twig' %}
+
+{% block link %}
+	<link rel="stylesheet" href="../css/artistes.css">
+{% endblock %}
+{% block aside %}
+{# Contenu du aside #}
+<ul>
+	{% for element in artistes %}
+		<li>
+			<a href="#{{ element.id }} ">
+            {# Si un artiste à une note >= à 4 alors il obtient une pastille  #}
+				{% if element.note >= 4 %}
+					<img class="new" src="../images/Pictogrammes/etoile.png"></img>
+			{% endif %}
+			{{element.titre}}
+		</li>
+	</a>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}
+{% block article %}
+{% for element in artistes %}
+    <article class="artiste {{ element.id }}" id="{{ element.id }}">
+    <ul>
+        <li>
+            <h2>
+                {{ element.titre }}
+            </h2>
+            <p>
+            {# Affiche le nombre d'étoiles attribuées à l'artiste #}
+            {% for i in range (1, element.note) %}
+                <img class="star" src="../images/Pictogrammes/etoile.png"></img>
+            {% endfor %}
+            </p>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <p>
+                {{ element.paragraphe1 }}
+            </p>
+            <p>
+                {{ element.paragraphe2 }}
+            </p>
+        </li>
+        <li>
+            <figure>
+                <blockquote cite="{{ element.source }}">
+                    <q>
+                        {{ element.quote }}
+                    </q>
+                </blockquote>
+                <figcaption>
+                    {{ element.legend }}
+                    <cite>
+                        {{ element.cite }}
+                    </cite>
+                </figcaption>
+            </figure>
+        </li>
+    </ul>
+    </article>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'aside.twig' %}
+
+
+{% block link %}
+	<link rel="stylesheet" href="../css/expo.css">
+{% endblock %}
+
+{% block aside %}
+<ul>
+	{# Liens pour le aside #}
+		{% for element in expos %}
+			<li>
+				<a href="#{{ element.id }} ">
+				{# Pastille new pour les nouvelles expos, si new==True #}
+					{% if element.new %}
+						<img class="new" src="../images/Pictogrammes/new.png"></img>
+					{% endif %}
+				{{element.titre}}
+			</li>
+		</a>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}
+{% block article %}
+{% for element in expos %}
+<article id="{{ element.id }}">
+	<ul>
+		<li>
+			<figure>
+				<img src=" {{ element.img_titre }} " alt=" {{ element.figcaption }} ">
+				<figcaption>
+					{{element.figcaption}}
+				</figcaption>
+			</figure>
+		</li>
+		<li>
+			<h2>		
+					{# Ajout de la pastille new si new ==True #}
+			{% if element.new %}
+				<img class="new_article" src="../images/Pictogrammes/new.png"></img>
+			{% endif %}
+				{{ element.titre }}
+			</h2>
+			<h3>
+				{{ element.sous_titre }}
+			</h3>
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<p>
+				{{ element.paragraphe1|raw }}
+			</p>
+		</li>
+		<li class="container_guide">
+			<p>
+				{{ element.paragraphe2 }}
+			</p>
+			<div class="guide">
+				<a {{ element.href|raw}} " {{element.download}} " target="_blank" class=" {{ element.class_download }} ">
+					<p>{{langue.telecharger}}</p>
+					<img src=" {{element.img_download}} " alt="download">
+				</a>
+			</div>
+		</li>
+		<li>
+			<details>
+				<sumarry>
+					{{ element.sumarry }}
+				</sumarry>
+				<p>
+					<b>
+						{{ element.details_dates }}
+					</b>
+					{{ element.details_dates_paragraphes }}
+				</p>
+				<p>
+					<b>
+						{{ element.liste_titre }}
+					</b>
+				</p>
+				<ul class="liste">
+					{% for element in element.liste %}
+						<li>
+							<b>
+								{{ element.jour }}
+								:
+							</b>
+							{{ element.heure }}
+						</li>
+					{% endfor %}
+				</ul>
+			</details>
+		</li>
+	</ul>
+</article>
+{% endfor %}
+{% endblock %}

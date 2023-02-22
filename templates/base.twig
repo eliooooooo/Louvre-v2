@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../css/style.css"> 
+		{% block link %}{% endblock %}
+		<title>{{ titre }}</title>
+		<!-- Google fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans:wght@300&family=Passion+One:wght@400;700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans:wght@300&family=Passion+One:wght@400;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="wrapper">
+			<header role="banner">
+				<img src="../images/logo-louvres.png" alt="Louvres">
+				<a href="https://www.louvre.fr/"></a>
+			</header>
+			<nav
+				role="navigation">
+				{# Permet la mise en place et la traduction de la nav barre #}
+				<ul>
+					{% for element in nav %}
+						{% if element.page is defined %}
+							<li>
+								<a href="{{element.id}}.php">{{element.page}}</a>
+							</li>
+						{% else %}
+							<li>
+								<a href="{{element.id}}.php">{{element.categorie}}</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</nav>
+			{% block main %}{% endblock %}
+			<footer
+				role="contentinfo">
+				{# Permet la mise en place et la traduction du footer intégralement #}
+				{% block footer %}
+					<!-- Premiere partie avec le plan du site -->
+					<ul>
+						<li>
+							<!-- Contient les grand titres (menu) -->
+							{% for element in nav %}
+								{% if element.page is defined %}
+									<a href="{{element.id}}.php" class="footertitle">{{element.page}}</a>
+								{% endif %}
+							{% endfor %}
+							<p>©BURKLE Eliott</p>
+							<a href="{{langue.translate}}{{page}}.php"><img class="langue" src="../images/Pictogrammes/langue.png" alt="boutton changement de langue"></a>
+						</li>
+					</li>
+					<li>
+						<!-- Contient les grand titres (menu) -->
+						<a href="expositions.php">{{nav[1].categorie}}</a>
+						<!-- Et les sous menus (articles de la page) -->
+						{% for element in expos %}
+							<a href="expositions.php#{{element.id}}">{{element.titre}}</a>
+						{% endfor %}
+					</li>
+					<li>
+						<!-- Contient les grand titres (menu) -->
+						<a href="salles.php">{{nav[2].categorie}}</a>
+						<!-- Et les sous menus (articles de la page) -->
+						{% for element in salles %}
+							<a href="salles.php#{{element.id}}">{{element.titre}}</a>
+						{% endfor %}
+					</li>
+					<li>
+						<!-- Contient les grand titres (menu) -->
+						<a href="artistes.php">{{nav[3].categorie}}</a>
+						<!-- Et les sous menus (articles de la page) -->
+						{% for element in artistes %}
+							<a href="artistes.php#{{element.id}}">{{element.titre}}</a>
+						{% endfor %}
+					</li>
+				</ul>
+				<!-- Deuxième partie : Les réseaux -->
+				<ul>
+					<li>{{langue.footer}}</li>
+					<li>
+						{% for element in reseaux %}
+							<a href="{{element.lien}}" target=":blank"><img src="{{element.image}}" alt="{{element.reseau}}"></a>
+						{% endfor %}
+					</li>
+				</ul>
+			{% endblock footer %}
+			</footer>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends 'article.twig' %}
+
+{% block article %}
+	{% for element in presentation %}
+		<article>
+			<h2>
+				{{ element.titre }}
+			</h2>
+			<p>
+				{{ element.paragraphe }}
+			</p>
+			<p>
+				{{ element.paragraphe2 }}
+			</p>
+		</article>
+	{% endfor %}
+	<h1>
+		{{ titre_inter }}
+	</h1>
+	{% for element in infos %}
+		<article>
+			<h2>
+				{{ element.titre }}
+			</h2>
+			<iframe class="maps" src="{{ element.maps }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			<p>
+				{{ element.adresse }}
+			</p>
+		</article>
+	{% endfor %}
+	<article>
+		<h2>
+			{{ titre_tarif }}
+		</h2>
+		<table>
+		{# Insertion du tableau des tarifs #}
+			<thead>
+				<tr>
+					<th>{{langue.tableau.colonne1}}</th>
+					<th>{{langue.tableau.colonne2}}</th>
+					<th>{{langue.tableau.colonne3}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for element in tarifs %}
+					<tr>
+						<td>{{ element.duree }}</td>
+						<td>{{ element.voiture }}</td>
+						<td>{{ element.moto }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</article>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'article.twig' %}
+
+
+{% block article %}
+	{% for element in cgu %}
+		<article>
+			<h2>
+				{{ element.titre }}
+			</h2>
+			<p>
+				{{ element.paragraphe }}
+			</p>
+			{% if element.liste is defined %}
+				<ul class="liste">
+					{% for element in element.liste %}
+						<li>
+							{{element.p}}
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</article>
+	{% endfor %}
+{% endblock %}

@@ -1,0 +1,35 @@
+/* Formulaire */
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: 300px;
+}
+
+textarea {
+    width: 300px;
+    height: 100px;
+}
+
+form * {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+legend {
+    text-align: left;
+}
+
+.radio {
+    width: 50px;
+}
+
+/* Bouton envoyer */
+.submit {
+    margin-top: 20px;
+    width: 100px;
+}

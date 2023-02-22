@@ -1,0 +1,70 @@
+{% extends 'aside.twig' %}
+
+{% block link %}
+	<link rel="stylesheet" href="../css/contact.css">
+	<script type="text/javascript">
+		function afficher(choix) {
+document.getElementById("valeur").innerHTML = choix;
+}
+	</script>
+{% endblock %}
+{% block aside %}
+	{# Contenu du aside #}
+	<ul>
+		{% for element in contact %}
+			<li>{{element.texte|raw}}</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
+{% block article %}
+	<article>
+		<h2>{{form.titre_form}}</h2>
+		<!-- Formulaire de contact -->
+		<form
+			action="action-type" method="get">
+			{# Chaque fieldset contient sa boucle #}
+			<fieldset>
+				<legend>{{form.legend1}}</legend>
+				{% for element in form.fieldset1 %}
+					<!-- saisie de caractères -->
+					<p>{{element.p}}</p><input name="{{element.id}}" type="text" size="30" maxlength="40" placeholder="{{element.placeholder}}">
+				{% endfor %}
+			</fieldset>
+			<fieldset>
+				<legend>{{form.legend2}}</legend>
+				<!-- saisie de caractères -->
+				<p>{{form.fieldset2.p1}}</p>
+				<textarea name="Nom" cols="50" rows="10" placeholder="{{form.fieldset2.textarea}}"></textarea>
+				<!-- Choix -->
+				<p>{{form.fieldset2.p2}}
+					<span id="valeur">25</span>
+				</p>
+				<p>
+					<input name="curseur" type="range" value="25" max="50" min="0" step="5" onchange="afficher(this.value)">
+				</p>
+			</fieldset>
+			<fieldset>
+				<legend>{{form.legend3}}</legend>
+				<!-- saisie de caractères -->
+				{% for element in form.fieldset3.input %}
+					<p>{{element.p}}</p><input type="{{element.id}}" name="{{element.id}}" placeholder="{{element.placeholder}}">
+				{% endfor %}
+				<!-- Choix multiple -->
+				<p>{{form.fieldset3.p1}}</p>
+				<select name="Nom" size="1">
+					{% for element in form.fieldset3.select %}
+						<option {% if element.selected is defined %} {{element.selected}} {% endif %}>{{element.option}}</option>
+					{% endfor %}
+				</select>
+				<p>{{form.fieldset3.p2}}</p>
+				<!-- Case à cocher -->
+				{% for element in form.fieldset3.radio %}
+					<label for="{{element.label}}">
+						{{element.label|capitalize}}
+					</label><input class="radio" type="radio" name="user" id="{{element.id}}" value="{{element.id}}">
+				{% endfor %}
+			</fieldset>
+			<input type="submit" class="submit">
+		</form>
+	</article>
+{% endblock %}

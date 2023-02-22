@@ -1,0 +1,15 @@
+{% extends 'base.twig' %}
+
+{# Permet de préciser l'arborescence des articles #}
+
+{% block main %}
+<main role="main">
+<section>
+<h1> {{ section }} </h1>
+{% block section %}
+{% block article %}
+{% endblock %}
+{% endblock %}
+</section>
+</main>
+{% endblock %}

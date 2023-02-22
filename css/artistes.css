@@ -1,0 +1,53 @@
+.artiste ul:nth-child(1) {
+    color: white;
+    font-size: 50px;
+    text-shadow: 1px 1px 2px black;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.artiste ul li p {
+    margin-top: 0;
+}
+
+.artiste ul li h2 {
+    margin-bottom: 0;
+}
+
+/* Background de chaque artiste */
+.gericault ul:nth-child(1) {
+    background-image: url(../images/artistes/gericault.jpg);
+    background-position: 50%;
+}
+
+.koons ul:nth-child(1) {
+    background-image: url(../images/artistes/koons.jpg);
+    background-position: 50%;
+}
+
+.coster ul:nth-child(1) {
+    background-image: url(../images/artistes/coster.jpg);
+    background-position: 50%;
+}
+
+.crespin ul:nth-child(1) {
+    background-image: url(../images/artistes/crespin.jpg);
+    background-position: 50%;
+}
+
+.fabre ul:nth-child(1) {
+    background-image: url(../images/artistes/fabre.jpg);
+    background-position: 50%;
+}
+
+/* Citations stylisées */
+blockquote {
+    margin-left: 32px;
+    border-left: 4px solid white;
+    padding-left: 8px;
+}
